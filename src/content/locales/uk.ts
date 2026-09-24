@@ -1,4 +1,5 @@
 import type { SiteContent } from '@/domain/content';
+import { BASE_PATH, SITE_URL } from '@/config/site';
 import { buildContacts, STATS } from '@/content/profile';
 
 export const uk: SiteContent = {
@@ -713,7 +714,8 @@ export const uk: SiteContent = {
         'Статичний сайт на Next.js, зроблений за принципами SOLID: контент відокремлений від UI, сервіси за інтерфейсами, PDF-резюме генерується з тих самих даних, аналітика з повагою до приватності, міні-гра на canvas, юніт- та E2E-тести, CI/CD на GitHub Pages.',
       stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'react-pdf', 'Vitest', 'Playwright', 'GitHub Actions'],
       repos: ['oleksa_sarnatskyi'],
-      demo: 'https://sarnakhmel.github.io/oleksa_sarnatskyi/',
+      // Wherever the site is deployed (GitHub Pages, Cloudflare Pages…).
+      demo: `${SITE_URL}${BASE_PATH}/`,
       sprite: 'floppy',
     },
   ],
