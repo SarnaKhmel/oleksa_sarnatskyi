@@ -28,6 +28,8 @@ next-env.d.ts
 # Environment — local only. Copy .env.example → .env.local
 .env*
 !.env.example
+# Public production URL only — safe to commit (see file header).
+!.env.production
 
 # Secrets and keys must never be committed
 *.pem
