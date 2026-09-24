@@ -1,0 +1,14 @@
+// Cloudflare Workers — static assets only (no OpenNext, no server code).
+// Build: `npm run build` → static export in ./out; Deploy: `npx wrangler deploy`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "oleksa-sarnatskyi",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./out",
+    // Next exports /en/index.html etc. — serve /en/ and redirect /en → /en/.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get the exported 404 page.
+    "not_found_handling": "404-page"
+  }
+}

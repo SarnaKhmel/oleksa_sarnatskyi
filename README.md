@@ -81,7 +81,20 @@ src/
 4. Push to `main` — `.github/workflows/deploy.yml` runs lint, types, unit and E2E tests, then
    builds and deploys.
 
-Alternatives that also host the static `out/` folder for free: Cloudflare Pages, Netlify, Vercel.
+### Cloudflare Workers — static assets (current host while GitHub Actions is unavailable)
+
+Cloudflare builds and deploys on every push to `main` via Workers Builds — no GitHub Actions
+needed. `wrangler.jsonc` serves the static export from `./out`; there is no server code, so the
+OpenNext adapter that Cloudflare suggests for Next.js must **not** be used.
+
+| Setting | Value |
+|---|---|
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Build variables | `NODE_VERSION=22`, `NEXT_PUBLIC_SITE_URL=https://<worker>.<account>.workers.dev` |
+
+The Worker name in `wrangler.jsonc` must match the project name in the Cloudflare dashboard.
+The site is served from the domain root, so no base path is needed.
 
 ## Working on the project
 
