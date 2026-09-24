@@ -1,0 +1,264 @@
+@import 'tailwindcss';
+
+/* Theme is driven by <html data-theme>, set before paint by THEME_BOOT_SCRIPT. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------------------
+   Palette tokens
+   Day   = Game Boy DMG LCD greens.
+   Night = green phosphor CRT.
+   --------------------------------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --bg: #e4ebd3;
+  --bg-deep: #d5dfbf;
+  --surface: #f3f6ea;
+  --surface-2: #e9efdb;
+  --fg: #1b2e1b;
+  --muted: #4a5f47;
+  --accent: #2d5a27;
+  --accent-fg: #f3f6ea;
+  --accent-2: #4f7d2a;
+  --border: #2d4a2a;
+  --shadow: #b7c69c;
+  --gold: #8a6200;
+  --danger: #9a2f24;
+  --grid: rgb(27 46 27 / 0.045);
+  --scanline: transparent;
+  --glow: none;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #0d130f;
+  --bg-deep: #090e0b;
+  --surface: #141d17;
+  --surface-2: #1a261e;
+  --fg: #d3e2d0;
+  --muted: #8ea68b;
+  --accent: #8fcf7e;
+  --accent-fg: #0d130f;
+  --accent-2: #6fae5f;
+  --border: #4d6b4a;
+  --shadow: #050806;
+  --gold: #e3c56b;
+  --danger: #e38a7f;
+  --grid: rgb(143 207 126 / 0.035);
+  --scanline: rgb(0 0 0 / 0.1);
+  --glow: none;
+  color-scheme: dark;
+}
+
+/* No-JS fallback: follow the OS until the boot script sets data-theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0d130f;
+    --bg-deep: #090e0b;
+    --surface: #141d17;
+    --surface-2: #1a261e;
+    --fg: #d3e2d0;
+    --muted: #8ea68b;
+    --accent: #8fcf7e;
+    --accent-fg: #0d130f;
+    --accent-2: #6fae5f;
+    --border: #4d6b4a;
+    --shadow: #050806;
+    --gold: #e3c56b;
+    --danger: #e38a7f;
+    --grid: rgb(143 207 126 / 0.035);
+    --scanline: rgb(0 0 0 / 0.1);
+    --glow: none;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-2: var(--accent-2);
+  --color-line: var(--border);
+  --color-shadow: var(--shadow);
+  --color-gold: var(--gold);
+  --color-danger: var(--danger);
+
+  --font-pixel: var(--font-press-start), ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --breakpoint-xs: 26rem;
+
+  --animate-blink: blink 1s steps(2, start) infinite;
+  --animate-frame: frame 0.6s steps(1, end) infinite;
+  --animate-bob: bob 1.2s steps(2, end) infinite;
+  --animate-drift: drift 80s linear infinite;
+  --animate-drift-slow: drift 160s linear infinite;
+  --animate-pop: pop 0.25s steps(3, end);
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+/* Two-frame sprite animation: frame B uses a negative delay of half a cycle. */
+@keyframes frame {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Pixel utilities
+   --------------------------------------------------------------------------- */
+
+/* Notched 4px border + hard 8-bit drop shadow, drawn with box-shadows only. */
+@utility pixel-frame {
+  box-shadow:
+    0 -4px 0 0 var(--border),
+    0 4px 0 0 var(--border),
+    -4px 0 0 0 var(--border),
+    4px 0 0 0 var(--border),
+    8px 8px 0 0 var(--shadow);
+}
+
+@utility pixel-frame-sm {
+  box-shadow:
+    0 -3px 0 0 var(--border),
+    0 3px 0 0 var(--border),
+    -3px 0 0 0 var(--border),
+    3px 0 0 0 var(--border),
+    5px 5px 0 0 var(--shadow);
+}
+
+@utility pixel-frame-flat {
+  box-shadow:
+    0 -3px 0 0 var(--border),
+    0 3px 0 0 var(--border),
+    -3px 0 0 0 var(--border),
+    3px 0 0 0 var(--border);
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+
+@utility text-glow {
+  text-shadow: var(--glow);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    /* Sticky HUD height — keeps anchored sections visible. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 16px 16px;
+    color: var(--fg);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+  }
+
+  /* CRT scanlines — only visible at night (transparent by day). */
+  body::after {
+    content: '';
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      var(--scanline) 3px,
+      transparent 4px
+    );
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  :focus-visible {
+    outline: 3px dashed var(--accent);
+    outline-offset: 4px;
+  }
+
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reveal on scroll — a short stepped "pixel" fade, never on reduced motion.
+   --------------------------------------------------------------------------- */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.js-reveal [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.45s steps(5, end),
+    transform 0.45s steps(5, end);
+}

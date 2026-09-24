@@ -1,0 +1,43 @@
+{
+  "name": "oleksa-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cv": "tsx scripts/generate-cv.tsx",
+    "predev": "npm run cv",
+    "dev": "next dev -p 3100",
+    "prebuild": "npm run cv",
+    "build": "next build",
+    "preview": "python3 -m http.server 4173 --directory out",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run typecheck && npm run test"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@react-pdf/renderer": "^4.9.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^24.13.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "description": "Retro 8-bit portfolio of Oleksa Sarnatskyi \u2014 static Next.js site with a generated PDF CV.",
+  "engines": {
+    "node": ">=22"
+  }
+}
