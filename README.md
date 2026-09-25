@@ -71,35 +71,29 @@ src/
 - Only UI preferences (theme, sound, game best score) are kept in the visitor's own `localStorage`.
 - No forms either: visitors reach out through the listed contacts.
 
-## Deployment (GitHub Pages, free)
+## Deployment (Cloudflare Workers — static assets)
 
-1. Repository: **`SarnaKhmel/oleksa_sarnatskyi`** → served at
-   https://sarnakhmel.github.io/oleksa_sarnatskyi/ (the `/oleksa_sarnatskyi` base path is detected
-   automatically by `actions/configure-pages`).
-2. Settings → Pages → Source: **GitHub Actions**.
-3. Optionally add the repository variable `RELEASE_DATE` to pin the release date.
-4. Push to `main` — `.github/workflows/deploy.yml` runs lint, types, unit and E2E tests, then
-   builds and deploys.
-
-### Cloudflare Workers — static assets (current host while GitHub Actions is unavailable)
-
-Cloudflare builds and deploys on every push to `main` via Workers Builds — no GitHub Actions
-needed. `wrangler.jsonc` serves the static export from `./out`; there is no server code, so the
-OpenNext adapter that Cloudflare suggests for Next.js must **not** be used.
+Cloudflare builds and deploys **only from `main`** via Workers Builds — pull requests and other
+branches are never built or deployed. There is no other CI:
+GitHub Actions and Vercel are intentionally not used. `wrangler.jsonc` serves the static export
+from `./out`; there is no server code, so the OpenNext adapter that Cloudflare suggests for
+Next.js must **not** be used.
 
 | Setting | Value |
 |---|---|
+| Production branch | `main` |
+| Non-production branch builds | **off** (Settings → Build → Branch control) |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
-| Build variables | `NODE_VERSION=22`, `NEXT_PUBLIC_SITE_URL=https://<worker>.<account>.workers.dev` |
+| Build variables | `NODE_VERSION=22`, `NEXT_PUBLIC_SITE_URL=https://<worker>.<account>.workers.dev`, optional `RELEASE_DATE` |
 
 The Worker name in `wrangler.jsonc` must match the project name in the Cloudflare dashboard.
 The site is served from the domain root, so no base path is needed.
 
 ## Working on the project
 
-- **Branches:** `main` is always deployable. Work in `feat/…`, `fix/…`, `content/…` branches and
-  merge through a pull request — CI must be green.
+- **Branches:** `main` is the only deploy branch and is always deployable. Work in `feat/…`, `fix/…`, `content/…` branches and
+  merge through a pull request. There is no CI, so run the checks below locally before merging.
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org) — `feat:`, `fix:`,
   `content:`, `refactor:`, `test:`, `chore:`. Keep refactors and features in separate commits.
 - **Versioning:** [SemVer](https://semver.org) in `package.json` — the version and the build date
@@ -108,7 +102,7 @@ The site is served from the domain root, so no base path is needed.
   - `minor` — new sections or features
   - `major` — redesigns or breaking structural changes
 - **Releasing:** bump the version (`npm version minor --no-git-tag-version`), add an entry to
-  `CHANGELOG.md`, merge to `main`. Pin a date with the `RELEASE_DATE` variable if needed.
+  `CHANGELOG.md`, merge to `main`. Pin a date with the `RELEASE_DATE` build variable in Cloudflare if needed.
 - **Tests are mandatory:** every logic change comes with a unit test; every user-visible flow
   with a Playwright test. Run `npm run check` before pushing.
 - **Content rules:** only facts that can be explained in an interview; no confidential employer

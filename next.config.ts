@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 import packageJson from './package.json' with { type: 'json' };
 
-/** GitHub Pages project sites live under `/<repo>`; the deploy workflow sets this. */
+/** Optional prefix for hosts that serve the site from a sub-path; empty on Cloudflare. */
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 /** Release date = build date (UTC), unless pinned explicitly for a release. */

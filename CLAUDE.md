@@ -5,7 +5,7 @@
 Read `README.md` first — it is the source of truth for architecture and working rules.
 
 - Static export only (`output: 'export'`): no server features (route handlers with Request,
-  cookies, redirects, server actions, proxy). Everything must work on GitHub Pages.
+  cookies, redirects, server actions, proxy). Everything must work as static assets on Cloudflare Workers.
 - Copy lives in `src/content/**`; components never hard-code text. Keep `en.ts` and `uk.ts`
   structurally identical (a unit test enforces it). English is the default locale.
 - Business logic goes to `src/services/**` or `src/game/**` behind interfaces; only

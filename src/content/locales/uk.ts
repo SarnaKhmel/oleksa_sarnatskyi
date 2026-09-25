@@ -552,10 +552,10 @@ export const uk: SiteContent = {
       id: 'portfolio',
       title: 'Це портфоліо',
       description:
-        'Статичний сайт на Next.js, зроблений за принципами SOLID: контент відокремлений від UI, сервіси за інтерфейсами, PDF-резюме генерується з тих самих даних, аналітика з повагою до приватності, міні-гра на canvas, юніт- та E2E-тести, CI/CD на GitHub Pages.',
-      stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'react-pdf', 'Vitest', 'Playwright', 'GitHub Actions'],
+        'Статичний сайт на Next.js, зроблений за принципами SOLID: контент відокремлений від UI, сервіси за інтерфейсами, PDF-резюме генерується з тих самих даних, жодної аналітики й cookies, міні-гра на canvas, юніт- та E2E-тести, деплой на Cloudflare Workers.',
+      stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'react-pdf', 'Vitest', 'Playwright', 'Cloudflare Workers'],
       repos: ['oleksa_sarnatskyi'],
-      // Wherever the site is deployed (GitHub Pages, Cloudflare Pages…).
+      // Wherever the site is deployed (see NEXT_PUBLIC_SITE_URL).
       demo: `${SITE_URL}${BASE_PATH}/`,
       sprite: 'floppy',
     },

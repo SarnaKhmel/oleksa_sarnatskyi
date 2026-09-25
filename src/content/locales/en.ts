@@ -552,10 +552,10 @@ export const en: SiteContent = {
       id: 'portfolio',
       title: 'This portfolio',
       description:
-        'A static Next.js site built with SOLID in mind: content separated from UI, services behind interfaces, a PDF CV generated from the same data, privacy-first analytics, a canvas mini-game, unit and E2E tests and CI/CD to GitHub Pages.',
-      stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'react-pdf', 'Vitest', 'Playwright', 'GitHub Actions'],
+        'A static Next.js site built with SOLID in mind: content separated from UI, services behind interfaces, a PDF CV generated from the same data, no analytics or cookies, a canvas mini-game, unit and E2E tests, deployed to Cloudflare Workers.',
+      stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'react-pdf', 'Vitest', 'Playwright', 'Cloudflare Workers'],
       repos: ['oleksa_sarnatskyi'],
-      // Wherever the site is deployed (GitHub Pages, Cloudflare Pages…).
+      // Wherever the site is deployed (see NEXT_PUBLIC_SITE_URL).
       demo: `${SITE_URL}${BASE_PATH}/`,
       sprite: 'floppy',
     },

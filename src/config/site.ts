@@ -1,8 +1,8 @@
 import type { Locale } from '@/i18n/locales';
 
 /**
- * GitHub Pages serves a project site from `/<repo>/`. The deploy workflow passes
- * that prefix through `NEXT_PUBLIC_BASE_PATH`; locally it is empty.
+ * Optional sub-path the site is served from (`NEXT_PUBLIC_BASE_PATH`). Empty on
+ * Cloudflare Workers and locally, where the site lives at the domain root.
  */
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 

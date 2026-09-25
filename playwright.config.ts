@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * E2E tests run against the real static export (`out/`), exactly what GitHub
- * Pages serves. Build first: `npm run build && npm run test:e2e`.
+ * E2E tests run against the real static export (`out/`), exactly what Cloudflare
+ * serves. Build first: `npm run build && npm run test:e2e`.
  */
 const PORT = 4173;
 
