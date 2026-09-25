@@ -4,6 +4,25 @@ All notable changes to this project. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-09-25
+
+### Changed
+
+- Less text on the page: the "Achievements" section is removed (it repeated experience and
+  case studies), case studies are cut to the four strongest, and section leads are kept only
+  where they add information.
+- Case studies show the result up front; the challenge and solution open on demand.
+- Experience shows the current roles; earlier ones fold into one accordion.
+- Skill groups show a short preview and expand to the full list; six main groups are shown,
+  the rest fold under "More skills".
+- Contact cards are equal in size and slightly smaller; four in a row only from 1280px.
+
+### Fixed
+
+- Switching the language no longer resets the music and sound toggles while the old music loop
+  kept playing (which allowed starting a second, overlapping loop).
+- The email address in the contacts no longer breaks in the middle of a word.
+
 ## [1.0.2] — 2026-09-24
 
 ### Fixed

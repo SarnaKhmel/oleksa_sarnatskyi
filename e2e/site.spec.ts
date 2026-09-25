@@ -80,6 +80,29 @@ for (const width of [375, 768, 1024, 1280, 1440]) {
   });
 }
 
+test('long sections start folded and expand on demand', async ({ page }) => {
+  await page.goto('/en/');
+  const earlier = page.locator('#experience details');
+  await expect(earlier.getByText('RexSoft')).toBeHidden();
+  await earlier.locator('summary').click();
+  await expect(earlier.getByText('RexSoft')).toBeVisible();
+
+  const firstCase = page.locator('#cases article').first();
+  await expect(firstCase.getByText('Challenge', { exact: true })).toBeHidden();
+  await firstCase.getByText('Show details').click();
+  await expect(firstCase.getByText('Challenge', { exact: true })).toBeVisible();
+
+  const frontend = page.locator('#skills details').first();
+  await expect(frontend.getByText('Storybook', { exact: true })).toBeHidden();
+  await frontend.locator('summary').click();
+  await expect(frontend.getByText('Storybook', { exact: true })).toBeVisible();
+
+  const moreSkills = page.locator('#skills > details');
+  await expect(moreSkills.getByText('Integrations')).toBeHidden();
+  await moreSkills.locator('> summary').click();
+  await expect(moreSkills.getByText('Integrations')).toBeVisible();
+});
+
 test('navigation highlights the section being read', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/en/');

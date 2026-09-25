@@ -58,14 +58,6 @@ export interface SkillGroup {
   items: string[];
 }
 
-export interface Achievement {
-  id: string;
-  title: string;
-  sprite: SpriteName;
-  summary: string;
-  points: string[];
-}
-
 /** "Why hire me" argument shown right under the hero. */
 export interface PowerUp {
   id: string;
@@ -168,7 +160,6 @@ export type SectionId =
   | 'experience'
   | 'cases'
   | 'skills'
-  | 'achievements'
   | 'projects'
   | 'beyond'
   | 'contacts'
@@ -205,6 +196,10 @@ export interface UiCopy {
   secretTitle: string;
   secretText: string;
   openQuest: string;
+  /** Accordion with the secondary skill groups; `{count}` is replaced. */
+  moreSkills: string;
+  /** Accordion with the roles before the current ones; `{count}` is replaced. */
+  earlierCareer: string;
   current: string;
   work: string;
   teaching: string;
@@ -253,7 +248,6 @@ export interface SiteContent {
   career: CareerStage[];
   cases: CaseStudy[];
   skills: SkillGroup[];
-  achievements: Achievement[];
   projects: Project[];
   beyond: BeyondItem[];
   contacts: ContactLink[];
