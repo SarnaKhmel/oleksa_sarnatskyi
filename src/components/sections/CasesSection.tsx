@@ -2,14 +2,19 @@ import { Icon } from '@/components/pixel/Icon';
 import { Section } from '@/components/ui/Section';
 import type { SiteContent } from '@/domain/content';
 
-/** Problem → solution → result stories; the format interviewers ask about. */
+/**
+ * Problem → solution → result stories; the format interviewers ask about.
+ * The result is always visible; challenge and solution sit in a native <details>
+ * so a skimming reader gets the outcome without a wall of text.
+ */
 export function CasesSection({ content }: { content: SiteContent }) {
   const { ui } = content;
-  const rows = [
+  const details = [
     ['challenge', ui.caseLabels.challenge],
     ['solution', ui.caseLabels.solution],
-    ['result', ui.caseLabels.result],
   ] as const;
+  const labelClass =
+    'font-mono text-[11px] font-semibold uppercase tracking-wider text-accent-2 dark:text-accent';
 
   return (
     <Section id="cases" copy={content.sections.cases}>
@@ -26,16 +31,29 @@ export function CasesSection({ content }: { content: SiteContent }) {
                   </h3>
                 </div>
               </div>
-              <dl className="mt-5 space-y-4 text-sm leading-relaxed">
-                {rows.map(([key, label]) => (
-                  <div key={key}>
-                    <dt className="font-mono text-[11px] font-semibold uppercase tracking-wider text-accent-2 dark:text-accent">
-                      {label}
-                    </dt>
-                    <dd className={`mt-1 ${key === 'result' ? 'font-semibold' : 'text-fg/90'}`}>{item[key]}</dd>
-                  </div>
-                ))}
-              </dl>
+              <p className="mt-5 text-sm leading-relaxed">
+                <span className={`block ${labelClass}`}>{ui.caseLabels.result}</span>
+                <span className="mt-1 block font-semibold">{item.result}</span>
+              </p>
+              <details className="group mt-4">
+                <summary className="inline-flex min-h-11 cursor-pointer items-center gap-2 font-pixel text-[10px] uppercase text-muted hover:text-fg">
+                  <span
+                    aria-hidden="true"
+                    className="text-accent-2 transition-transform group-open:rotate-90 dark:text-accent"
+                  >
+                    ▶
+                  </span>
+                  {ui.openQuest}
+                </summary>
+                <dl className="mt-2 space-y-4 border-t-4 border-line pt-4 text-sm leading-relaxed">
+                  {details.map(([key, label]) => (
+                    <div key={key}>
+                      <dt className={labelClass}>{label}</dt>
+                      <dd className="mt-1 text-fg/90">{item[key]}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
               <ul className="mt-auto flex flex-wrap gap-1.5 pt-5" aria-label="Stack">
                 {item.stack.map((tech) => (
                   <li key={tech} className="bg-bg-deep px-1.5 py-0.5 font-mono text-[11px]">

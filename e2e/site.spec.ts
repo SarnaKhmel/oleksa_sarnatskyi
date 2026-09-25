@@ -51,6 +51,58 @@ test('language switch keeps the reader in the same section', async ({ page }) =>
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
 });
 
+test('music and sound keep their state across a language switch', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/en/');
+  await page.getByRole('button', { name: '8-bit music' }).click();
+  await page.getByRole('button', { name: 'Sound effects' }).click();
+
+  await page.getByRole('link', { name: /language/i }).first().click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+  await expect(page.getByRole('button', { name: '8-бітна музика' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Звукові ефекти' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+for (const width of [375, 768, 1024, 1280, 1440]) {
+  test(`contact cards are equal and the email stays on one line at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/en/#contacts');
+    const cards = page.locator('#contacts li > a');
+    const boxes = await cards.evaluateAll((items) =>
+      items.map((item) => item.getBoundingClientRect()).map(({ width, height }) => ({ width, height })),
+    );
+    expect(new Set(boxes.map((box) => Math.round(box.width))).size).toBe(1);
+    expect(new Set(boxes.map((box) => Math.round(box.height))).size).toBe(1);
+
+    const email = page.locator('#contacts a[href^="mailto:"] span.font-semibold');
+    const lineHeight = await email.evaluate((node) => parseFloat(getComputedStyle(node).lineHeight));
+    expect((await email.boundingBox())!.height).toBeLessThan(lineHeight * 1.5);
+  });
+}
+
+test('long sections start folded and expand on demand', async ({ page }) => {
+  await page.goto('/en/');
+  const earlier = page.locator('#experience details');
+  await expect(earlier.getByText('RexSoft')).toBeHidden();
+  await earlier.locator('summary').click();
+  await expect(earlier.getByText('RexSoft')).toBeVisible();
+
+  const firstCase = page.locator('#cases article').first();
+  await expect(firstCase.getByText('Challenge', { exact: true })).toBeHidden();
+  await firstCase.getByText('Show details').click();
+  await expect(firstCase.getByText('Challenge', { exact: true })).toBeVisible();
+
+  const frontend = page.locator('#skills details').first();
+  await expect(frontend.getByText('Storybook', { exact: true })).toBeHidden();
+  await frontend.locator('summary').click();
+  await expect(frontend.getByText('Storybook', { exact: true })).toBeVisible();
+
+  const moreSkills = page.locator('#skills > details');
+  await expect(moreSkills.getByText('Integrations')).toBeHidden();
+  await moreSkills.locator('> summary').click();
+  await expect(moreSkills.getByText('Integrations')).toBeVisible();
+});
+
 test('navigation highlights the section being read', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/en/');

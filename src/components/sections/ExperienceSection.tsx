@@ -64,12 +64,18 @@ function Stage({ stage, level, content }: { stage: CareerStage; level: number; c
   );
 }
 
-/** Career path as a vertical "level map": the newest level on top. */
+/** Current roles stay visible; everything before them folds into one native <details>. */
 export function ExperienceSection({ content }: { content: SiteContent }) {
-  const { career } = content;
+  const { career, ui } = content;
+  const levelOf = (stage: CareerStage) => career.length - career.indexOf(stage);
+  const current = career.filter((stage) => stage.current);
+  const earlier = career.filter((stage) => !stage.current);
+  const list = (stages: CareerStage[]) =>
+    stages.map((stage) => <Stage key={stage.id} stage={stage} level={levelOf(stage)} content={content} />);
+
   return (
     <Section id="experience" copy={content.sections.experience}>
-      <div className="relative">
+      <div className="relative lg:max-w-5xl">
         <span
           aria-hidden="true"
           className="absolute bottom-4 left-[16px] top-4 w-1 sm:left-[20px]"
@@ -78,11 +84,21 @@ export function ExperienceSection({ content }: { content: SiteContent }) {
             backgroundSize: '4px 12px',
           }}
         />
-        <ol className="relative grid gap-8 lg:max-w-5xl">
-          {career.map((stage, index) => (
-            <Stage key={stage.id} stage={stage} level={career.length - index} content={content} />
-          ))}
-        </ol>
+        <ol className="relative grid gap-8">{list(current)}</ol>
+        {earlier.length > 0 && (
+          <details className="group relative mt-8">
+            <summary className="ml-12 inline-flex min-h-11 cursor-pointer items-center gap-3 bg-surface px-4 py-2 font-pixel text-[10px] uppercase leading-relaxed text-fg pixel-frame-flat hover:bg-surface-2 sm:ml-16">
+              <span
+                aria-hidden="true"
+                className="text-accent-2 transition-transform group-open:rotate-90 dark:text-accent"
+              >
+                ▶
+              </span>
+              {ui.earlierCareer.replace('{count}', String(earlier.length))}
+            </summary>
+            <ol className="mt-8 grid gap-8">{list(earlier)}</ol>
+          </details>
+        )}
       </div>
     </Section>
   );

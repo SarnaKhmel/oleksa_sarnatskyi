@@ -17,7 +17,7 @@ function shape(value: unknown): unknown {
   return typeof value;
 }
 
-const ids = (content: SiteContent, key: 'career' | 'cases' | 'skills' | 'achievements' | 'projects' | 'beyond') =>
+const ids = (content: SiteContent, key: 'career' | 'cases' | 'skills' | 'projects' | 'beyond') =>
   content[key].map((item) => item.id);
 
 describe('content', () => {
@@ -27,7 +27,7 @@ describe('content', () => {
 
   it('keeps Ukrainian and English structurally identical', () => {
     expect(shape(uk)).toEqual(shape(en));
-    for (const key of ['career', 'cases', 'skills', 'achievements', 'projects', 'beyond'] as const) {
+    for (const key of ['career', 'cases', 'skills', 'projects', 'beyond'] as const) {
       expect(ids(uk, key)).toEqual(ids(en, key));
     }
   });

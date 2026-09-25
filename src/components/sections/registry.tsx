@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react';
 import type { SectionId, SiteContent } from '@/domain/content';
 import type { Locale } from '@/i18n/locales';
-import { AchievementsSection } from './AchievementsSection';
 import { BeyondSection } from './BeyondSection';
 import { CasesSection } from './CasesSection';
 import { ContactsSection } from './ContactsSection';
@@ -28,7 +27,6 @@ export const SECTIONS: readonly SectionEntry[] = [
   { id: 'experience', Component: ExperienceSection },
   { id: 'cases', Component: CasesSection },
   { id: 'skills', Component: SkillsSection },
-  { id: 'achievements', Component: AchievementsSection },
   { id: 'projects', Component: ProjectsSection },
   { id: 'beyond', Component: BeyondSection },
   { id: 'contacts', Component: ContactsSection },
