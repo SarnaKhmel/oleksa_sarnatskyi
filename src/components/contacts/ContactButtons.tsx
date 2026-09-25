@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Icon } from '@/components/pixel/Icon';
 import type { ContactKind, ContactLink, SpriteName, UiCopy } from '@/domain/content';
 import { useSfx } from '@/providers/hooks';
@@ -12,8 +12,18 @@ const CONTACT_SPRITES: Record<ContactKind, SpriteName> = {
   github: 'github',
 };
 
-/** Static class names so Tailwind can see them. */
-const WIDE_COLUMNS: Record<number, string> = { 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' };
+/** Static class names so Tailwind can see them. Four in a row only where the email fits unbroken. */
+const WIDE_COLUMNS: Record<number, string> = { 3: 'xl:grid-cols-3', 4: 'xl:grid-cols-4' };
+
+/** Lets a long handle wrap only after "@" or ".", never in the middle of a word. */
+function breakableHandle(handle: string) {
+  return handle.split(/(?<=[@.])/).map((part, index) => (
+    <Fragment key={index}>
+      {index > 0 && <wbr />}
+      {part}
+    </Fragment>
+  ));
+}
 
 export function ContactButtons({
   contacts,
@@ -43,11 +53,11 @@ export function ContactButtons({
 
   return (
     <div>
-      <ul className={`grid gap-6 sm:grid-cols-2 ${wide ? WIDE_COLUMNS[contacts.length] ?? '' : ''}`}>
+      <ul className={`grid gap-4 sm:grid-cols-2 ${wide ? WIDE_COLUMNS[contacts.length] ?? '' : ''}`}>
         {contacts.map((contact) => {
           const external = contact.kind !== 'email';
           return (
-            <li key={contact.kind}>
+            <li key={contact.kind} className="min-w-0">
               <a
                 href={contact.href}
                 target={external ? '_blank' : undefined}
@@ -55,18 +65,18 @@ export function ContactButtons({
                 onClick={() => {
                   sfx('confirm');
                 }}
-                className="group flex min-h-20 items-center gap-4 bg-surface p-4 pixel-frame-sm transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1"
+                className="group flex h-full min-h-18 items-center gap-3 bg-surface p-4 pixel-frame-sm transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1"
               >
-                <Icon name={CONTACT_SPRITES[contact.kind]} className="h-10 w-10 shrink-0" />
-                <span className="min-w-0">
+                <Icon name={CONTACT_SPRITES[contact.kind]} className="h-8 w-8 shrink-0" />
+                <span className="min-w-0 flex-1">
                   <span className="block font-pixel text-[10px] uppercase text-muted">
                     {contact.label}
                   </span>
-                  <span className="mt-2 block break-all text-sm font-semibold group-hover:underline sm:text-base">
-                    {contact.handle}
+                  <span className="mt-2 block break-words text-sm font-semibold group-hover:underline">
+                    {breakableHandle(contact.handle)}
                   </span>
                 </span>
-                <span aria-hidden="true" className="ml-auto font-pixel text-xs text-accent-2 dark:text-accent">
+                <span aria-hidden="true" className="shrink-0 font-pixel text-xs text-accent-2 dark:text-accent">
                   ▶
                 </span>
               </a>
