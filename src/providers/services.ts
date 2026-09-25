@@ -44,3 +44,15 @@ export function createBrowserServices(): AppServices {
     music: new ChiptuneMusicPlayer(audio),
   };
 }
+
+let browserServices: AppServices | null = null;
+
+/**
+ * One set of services per browser tab. The `[lang]` layout remounts when the language
+ * changes, so creating services per mount would leave the old music loop playing while
+ * the new toggles show "off".
+ */
+export function getBrowserServices(): AppServices {
+  browserServices ??= createBrowserServices();
+  return browserServices;
+}
