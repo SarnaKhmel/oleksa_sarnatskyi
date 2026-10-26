@@ -5,19 +5,19 @@ import { buildContacts, STATS } from '@/content/profile';
 export const en: SiteContent = {
   locale: 'en',
   meta: {
-    title: 'Oleksa Sarnatskyi — Full-Stack Developer (React · Node.js · TypeScript · AI)',
+    title: 'Oleksa Sarnatskyi — Full-Stack Developer (React · Node.js · TypeScript)',
     description:
-      'Full-stack developer with 5+ years of experience: React, Next.js, Node.js, MongoDB, AI agents with Claude and LangGraph. Main developer of a multitenant SaaS platform.',
+      'Full-stack developer with 5+ years of experience: React and TypeScript on the front, Node.js and Express on the back. Sole developer of a multitenant CRM/ERP platform — payments, a production AI agent, infrastructure.',
   },
   person: {
     name: 'Oleksa Sarnatskyi',
     title: 'Full-Stack Developer',
-    tagline: 'React · Next.js · Node.js · TypeScript · AI',
+    tagline: 'React · Node.js · TypeScript',
     location: 'Kyiv, Ukraine · Remote',
     about: [
-      'Full-stack developer with 5+ years of commercial experience. For the last 2.5 years I have been the main — and since May 2026 the only — developer of Voopty, a multitenant CRM/ERP SaaS for education businesses, plus its Next.js client cabinet and an AI agent.',
-      'I own features end to end: architecture, data models and migrations, payments, background jobs, deployment and production support — and I care about the team around the code: reviews, planning, documentation and onboarding.',
-      'I work AI-first — Claude Code and Codex every day, and I have shipped LLM agents to production — while keeping human review and tests as the safety net.',
+      'Full-stack developer with 5+ years of commercial experience — React and TypeScript on the front, Node.js and Express on the back. For the past 2.5 years the main, and since May 2026 the only, developer of Voopty, a multitenant CRM/ERP platform for education businesses.',
+      'I own the whole technical process end to end: architecture, features, payments, infrastructure, deployment and production support — and keep a platform under real load running single-handedly.',
+      'I work AI-first — Claude Code every day, a production AI agent and a natural-language-to-database tool shipped — with a disciplined process built around automated tests and clean, maintainable architecture.',
     ],
     sheet: [
       ['Role', 'Full-Stack Developer'],
@@ -41,6 +41,7 @@ export const en: SiteContent = {
     languages: [
       { name: 'Ukrainian', level: 'native', score: 5 },
       { name: 'English', level: 'B2', score: 4 },
+      { name: 'Polish', level: 'A2', score: 2 },
     ],
   },
   nav: [
@@ -148,21 +149,21 @@ export const en: SiteContent = {
       sprite: 'brain',
       value: 'AI',
       title: 'AI in production',
-      text: 'A LangGraph + Claude agent with 12 tools, a natural-language-to-database assistant, daily Claude Code and Codex.',
+      text: 'A production LangGraph + Claude agent with 12 typed tools, a natural-language-to-database assistant, Claude Code every day.',
     },
     {
       id: 'money',
       sprite: 'coin',
       value: '4 PSPs',
       title: 'Billing & payments',
-      text: 'Monobank built from scratch, Stripe, LiqPay, WayForPay — subscriptions, recurring charges, verified webhooks.',
+      text: 'Monobank built from scratch — subscriptions, recurring charges, verified webhooks, reconciliation, PDF invoices — plus Stripe, LiqPay, WayForPay.',
     },
     {
       id: 'team',
       sprite: 'people',
       value: 'Lead',
       title: 'People & process',
-      text: 'Client meetings, epic planning, task assignment, code review, onboarding and knowledge sharing.',
+      text: 'Features and priorities planned with the product manager, tasks assigned to two other developers, final code-review sign-off.',
     },
   ],
   stats: [
@@ -171,7 +172,7 @@ export const en: SiteContent = {
     { id: 'share', label: 'Of the team’s commits since 2024', value: STATS.teamShare, suffix: '%' },
     { id: 'tests', label: 'Automated test cases written', value: STATS.testCases, suffix: '+' },
     { id: 'jobs', label: 'Background jobs built or reworked', value: STATS.backgroundJobs },
-    { id: 'emails', label: 'Email templates', value: STATS.emailTemplates, suffix: '+' },
+    { id: 'messages', label: 'Automated messages a day, on average', value: STATS.messagesPerDay },
   ],
   career: [
     {
@@ -180,14 +181,14 @@ export const en: SiteContent = {
       role: 'Full-Stack Developer',
       org: 'Voopty',
       period: 'Feb 2024 — present',
-      meta: 'CRM/ERP SaaS for education businesses · Remote · part-time from Feb, full-time from Apr 2024',
+      meta: 'Multitenant CRM/ERP for education businesses · Remote · part-time from Feb, full-time from Apr 2024',
       current: true,
       points: [
         'Main developer since 2024, the only developer since May 2026: Express + MongoDB backend and two React frontends from one source tree.',
-        'Reorganized the codebase into an Nx monorepo, modernized the stack (React 18, MUI v9, TypeScript, Rspack) and upgraded Node.js in the first month.',
-        'Built a separate Next.js client cabinet (in production) and led the development of an AI agent on LangGraph + Claude.',
-        'Payments, billing, 27 background jobs, data migrations on millions of records, security overhaul, analytics and admin panel.',
-        'Client meetings about paid features, epic planning, task assignment to other developers, code review, Confluence docs, access management and onboarding/offboarding.',
+        'Own architecture and technical decisions end to end; plan features and priorities with the product manager; gave the final code-review sign-off and assigned tasks to two other developers.',
+        'Built payments and billing from scratch on Monobank; led a production AI agent (LangGraph + Claude) and a natural-language-to-database assistant for non-technical users.',
+        'Run the platform under real load: a ~7.7M-record dataset, Redis queues and caching, 27 background jobs sending ~60k automated messages a day.',
+        'Reorganized a legacy codebase into an Nx monorepo, modernized the stack, built a separate Next.js client cabinet and own the infrastructure on AWS and Hetzner.',
       ],
     },
     {
@@ -211,9 +212,8 @@ export const en: SiteContent = {
       meta: 'Part-time · Remote',
       link: { href: 'https://www.karakumsoft.com', label: 'karakumsoft.com' },
       points: [
-        'Analytics for a catalytic-converter recycling service: accounting, pricing/tariff calculation and reporting.',
-        'Built the company website karakumsoft.com with Next.js and SCSS.',
-        'Discussed designs with designers and clients, documented delivered projects.',
+        'Built two production websites with Next.js and SCSS, including the company site karakumsoft.com.',
+        'Collaborated with designers and clients and documented the delivered projects.',
       ],
     },
     {
@@ -224,7 +224,7 @@ export const en: SiteContent = {
       period: 'Mar 2023 — Dec 2023',
       meta: 'Part-time · Remote',
       points: [
-        'Explained React concepts, reviewed students’ code and organized practical projects close to real-world tasks.',
+        'Mentored two course groups of 30–40 students: explained React concepts, reviewed code and ran practical projects close to real-world tasks.',
       ],
     },
     {
@@ -235,20 +235,21 @@ export const en: SiteContent = {
       period: 'Nov 2022 — Aug 2023',
       meta: 'Contract · Remote',
       points: [
-        'Worked directly with the client and built an online store end to end: React + Redux Toolkit frontend, Node.js + Express + MongoDB backend.',
-        'Deployed and maintained the project on Digital Ocean.',
+        'Built and ran a food-delivery online store end to end for a direct client: ~8k users, ~300 orders a day.',
+        'React + Redux Toolkit frontend, Node.js + Express + MongoDB backend: catalog, cart, online payments, delivery ordering and an admin panel.',
+        'Deployed and maintained the project on DigitalOcean.',
       ],
     },
     {
       id: 'medical',
       kind: 'work',
-      role: 'Healthcare IT — integrations',
+      role: 'Integration Specialist',
       org: 'Askep',
       period: 'Sep 2022 — Apr 2023',
-      meta: 'Medical information system · integration with state healthcare registries',
+      meta: 'Medical information system · On-site',
       points: [
-        'Integrated a medical information system with state databases, working closely with medical staff and stakeholders.',
-        'Afterwards worked with a hospital for 9 months, auditing its medical records and pointing out data errors.',
+        'Integrated a medical information system with state healthcare registries, working closely with medical staff and stakeholders.',
+        'Analyzed large data sets and corrected data-entry errors; documented and reported product bugs.',
       ],
     },
     {
@@ -258,7 +259,7 @@ export const en: SiteContent = {
       org: 'Djun Academy',
       period: 'Jul 2022 — Jun 2024',
       meta: 'Self-employed',
-      points: ['Designed and taught courses on JavaScript and React, reviewed assignments.'],
+      points: ['Designed and taught web courses for children (HTML, CSS, JavaScript, React), reviewed assignments.'],
     },
     {
       id: 'gorgany',
@@ -268,18 +269,18 @@ export const en: SiteContent = {
       period: 'Jan 2021 — Feb 2022',
       meta: 'Freelance · Remote',
       points: [
-        'Developed the storefront UI on Magento and worked on the migration away from Magento.',
+        'Front-end for an outdoor-gear store on Magento: migrated UI components and made the storefront responsive.',
         'Built interactive product size charts to improve UX.',
       ],
     },
     {
       id: 'robocode',
       kind: 'teaching',
-      role: 'Robotics & Web Technologies Teacher',
+      role: 'Senior Teacher — Robotics & Programming',
       org: 'ROBOCODE',
       period: 'Sep 2019 — Feb 2022',
       meta: 'Full-time',
-      points: ['Taught robotics and web development to kids: Arduino/C++, HTML, CSS, JavaScript.'],
+      points: ['Taught robotics and programming to children: Arduino and ESP32 (C++), HTML, CSS, JavaScript and Unity.'],
     },
     {
       id: 'palma',
@@ -289,7 +290,7 @@ export const en: SiteContent = {
       period: 'Sep 2018 — Dec 2018',
       meta: 'Part-time',
       points: [
-        'Dashcam video-publishing service (Israel): restructured the data schema and fixed a data migration.',
+        'Built and supported a dashcam-video publishing service (Israel): landing page, API integrations, data-schema restructuring and migrations, admin panel.',
       ],
     },
     {
@@ -349,7 +350,7 @@ export const en: SiteContent = {
       challenge:
         'Both the SaaS itself and the studios using it needed reliable subscriptions, invoices and online payments.',
       solution:
-        'Integrated Monobank acquiring from scratch (subscriptions, recurring charges, signature-verified webhooks, re-checks), supported Stripe, LiqPay and WayForPay, generated PDF invoices and receipts (Puppeteer, pdf-lib) and automated the billing cycle with scheduled jobs.',
+        'Integrated Monobank acquiring from scratch (subscriptions, recurring charges, signature-verified webhooks, reconciliation), supported Stripe, LiqPay and WayForPay, generated PDF invoices and receipts (Puppeteer, pdf-lib) and automated the billing cycle with scheduled jobs.',
       result:
         'End-to-end payment flows for businesses and their clients, with automatic reminders and account blocking for unpaid plans.',
       stack: ['Node.js', 'Monobank', 'Stripe', 'Agenda', 'Puppeteer', 'MongoDB'],
@@ -369,6 +370,8 @@ export const en: SiteContent = {
         'TanStack Query',
         'MUI v4 → v9',
         'Tailwind',
+        'Styled-Components',
+        'HTML5 · CSS3',
         'CSS Modules · SCSS',
         'Rspack · Webpack · Vite',
         'Storybook',
@@ -385,7 +388,8 @@ export const en: SiteContent = {
         'Express',
         'NestJS',
         'REST · OpenAPI / Swagger',
-        'JWT · OAuth',
+        'Multitenant architecture',
+        'Auth · permissions · JWT · OAuth',
         'Webhooks',
         'Puppeteer · pdf-lib',
         'Email templating',
@@ -403,6 +407,7 @@ export const en: SiteContent = {
         'Redis',
         'PostgreSQL · TypeORM',
         'MySQL',
+        'Firebase',
         'Import / export automation',
       ],
     },
@@ -412,7 +417,7 @@ export const en: SiteContent = {
       sprite: 'brain',
       items: [
         'Claude Code',
-        'Codex',
+        'Natural language → database',
         'LangChain · LangGraph',
         'Anthropic API',
         'Perplexity API',
@@ -450,6 +455,7 @@ export const en: SiteContent = {
         'ESLint · Prettier',
         'Code review',
         'Clean Code · SOLID',
+        'Agile / Scrum',
       ],
     },
     {
@@ -512,7 +518,6 @@ export const en: SiteContent = {
         'Photoshop',
         'Angular + RxJS',
         'React Native + Expo',
-        'Firebase',
         'Java (basics)',
         'Arduino · ESP32',
         'FreeCAD · 3D printing',
@@ -535,7 +540,7 @@ export const en: SiteContent = {
       id: 'sushi',
       title: 'Sushi with Love — online store',
       description:
-        'Commercial project I can share: catalogue, cart, admin panel with a Markdown editor, auth and email notifications.',
+        'Commercial project I can share: a food-delivery store for ~8k users and ~300 orders a day — catalogue, cart, online payments, delivery ordering, admin panel with a Markdown editor, auth and email notifications.',
       stack: ['React', 'Redux Toolkit', 'MUI', 'Formik', 'Node.js', 'Express', 'MongoDB', 'JWT'],
       repos: ['sushi_frontend', 'updated_sushi_server'],
       sprite: 'coin',
@@ -606,37 +611,31 @@ export const en: SiteContent = {
   }),
   cv: {
     summary:
-      'Full-stack developer with 5+ years of commercial experience in TypeScript, React, Next.js and Node.js. For the last 2.5 years — the main, and since May 2026 the only, developer of a multitenant CRM/ERP SaaS platform, its Next.js client cabinet and an AI agent. I own features end to end — architecture, data models and migrations, payments, background jobs, deployment and production support — and work AI-first (Claude Code, Codex, production LLM agents) with tests and code review as the safety net. Experienced in leading work with clients and the team: scoping, planning, reviews and onboarding.',
+      'Full-stack developer with 5+ years of commercial experience (React/TypeScript on the front, Node.js/Express on the back). For the past 2.5 years the main — and currently the sole — developer of a multitenant CRM/ERP platform, owning the whole technical process end to end: architecture, features, payments, infrastructure, deployment and production support. Built payments from scratch, a production AI agent and a natural-language-to-database tool, and keeps a platform under real load running single-handedly. AI-first in daily work (Claude Code), with a disciplined process built around automated testing and clean, maintainable architecture.',
     bullets: [
-      'Reorganized the codebase into an Nx monorepo and modernized the stack: Node.js upgrade in the first month, React 18, MUI v9, TypeScript (160+ modules), Rspack; faster builds via chunking and code splitting.',
-      'Built a separate Next.js 16 client cabinet (80%+ of commits, in production): TanStack Query, Zustand, next-intl, Tailwind, Storybook + Vitest, online payments.',
-      'Led an AI agent on NestJS + LangGraph + Claude with 12 typed tools acting under the user’s own permissions; shipped to production.',
-      'Integrated Monobank acquiring from scratch (subscriptions, recurring charges, verified webhooks) and supported Stripe, LiqPay, WayForPay; PDF invoices with Puppeteer and pdf-lib.',
-      'Built or reworked all 27 scheduled jobs (billing, reminders, payment checks, syncing) and a cron microservice for automatic class pre-booking.',
-      'Evolved data models and ran migrations on millions of records with audits and tests; automated spreadsheet import/export.',
-      'Led a security overhaul: per-resource authorization, tenant isolation, access/refresh tokens, Redis JWT blocklist, rate limiting, Google OAuth.',
-      'Kept the system fast under ~300 concurrent users: caching with invalidation, Redis queues, request throttling, optimized MongoDB aggregations.',
-      'Introduced Grafana + Loki + Winston; built analytics dashboards with charts and cohort tables: MRR, revenue, retention, trial conversion, at-risk accounts, LTV.',
-      'Set up environments, Docker, GitHub Actions deploys and Kubernetes with Helm; took part in the AWS → Hetzner / Backblaze B2 migration.',
-      'Made tests mandatory for every change: 2,700+ Jest test cases, a Playwright E2E suite, OpenAPI docs.',
-      'Met clients about paid features, planned epics, assigned tasks, reviewed code, wrote Confluence docs and ran onboarding and access management.',
+      'Own architecture and technical decisions end to end; plan features and priorities with the product manager; gave final code-review sign-off and assigned tasks to two other developers.',
+      'Built payments and billing from scratch on Monobank: subscriptions, recurring charges, signature-verified webhooks, reconciliation and PDF invoices; supported Stripe, LiqPay and WayForPay.',
+      'Led development of a production AI agent (LangGraph + Claude, typed tools acting under each user’s own token) and a natural-language-to-database assistant for non-technical users (Claude, Perplexity APIs).',
+      'Run the platform under real load: ~7.7M-record dataset, Redis queues and caching, 27 background jobs sending ~60k automated messages/day.',
+      'Reorganized a legacy codebase into an Nx monorepo and modernized the stack (Node.js, React 18, MUI, TypeScript, Rspack), removing large amounts of dead code without stopping delivery.',
+      'Built a separate Next.js client cabinet (SSR) with a Storybook design system; delivered LTV and cohort analytics and admin panels.',
+      'Owned infrastructure: AWS and Hetzner, deploy pipelines, S3 → Backblaze storage migration, monitoring with Grafana, Loki and Sentry; kept production stable single-handedly through periods as the only developer.',
     ],
     projects: [
       'CoffeeLog — React Native + Expo app for scoring coffee quality (SQLite, offline, i18n).',
-      'Sushi with Love — React + Node.js online store built end to end for a client.',
+      'Sushi with Love — React + Node.js food-delivery store built end to end for a client (~8k users, ~300 orders/day).',
       'More public repositories (Angular, React Native, TypeScript) — github.com/SarnaKhmel.',
     ],
     volunteering: 'Board member of the Vitrolom charity foundation.',
     skills: [
-      ['Languages', 'TypeScript, JavaScript (ES6+), PHP'],
-      ['Frontend', 'React, Next.js, Redux, Zustand, TanStack Query, MUI, Tailwind, Storybook, Rspack, Webpack, Vite'],
-      ['Backend', 'Node.js, Express, NestJS, REST, OpenAPI/Swagger, JWT, OAuth, webhooks, Puppeteer'],
-      ['Data', 'MongoDB (Mongoose, aggregations, migrations), Redis, PostgreSQL, MySQL'],
-      ['AI', 'Claude Code, Codex, LangChain, LangGraph, Anthropic API, Perplexity API'],
-      ['Jobs & queues', 'Agenda, cron, BullMQ'],
-      ['DevOps', 'Docker, Kubernetes, Helm, GitHub Actions, AWS, Hetzner, Backblaze B2, Grafana, Loki, Winston, Sentry, Linux'],
-      ['Quality', 'Jest, Vitest, Testing Library, Playwright, ESLint, Prettier, SOLID, code review'],
-      ['Team', 'Client communication, epic planning, mentoring, Confluence, Jira, Figma, Photoshop'],
+      ['Languages', 'JavaScript (ES6+), TypeScript, PHP'],
+      ['Frontend', 'React, Next.js (SSR/SSG), Redux, Zustand, Vite, Rspack/Webpack, Tailwind, MUI, Styled-Components, Storybook, HTML5, CSS3'],
+      ['Backend', 'Node.js, Express, NestJS, REST APIs, webhooks, third-party integrations; authentication, permissions, JWT; multitenant architecture'],
+      ['Databases', 'MongoDB (Mongoose), PostgreSQL, MySQL, Firebase, Redis (queues, caching)'],
+      ['AI', 'Claude Code daily; production LLM agent (LangGraph + Claude, tool calling); natural-language-to-database assistant (Claude, Perplexity APIs)'],
+      ['Payments', 'Monobank — built from scratch (subscriptions, recurring, webhooks, reconciliation, PDF invoices); Stripe, LiqPay, WayForPay; Telegram bots'],
+      ['Infrastructure', 'AWS, Hetzner, Docker, Kubernetes, CI/CD; deploy pipelines, S3 → Backblaze migration; Grafana, Loki, Sentry; Nx monorepo'],
+      ['Testing', 'Jest, Playwright (unit/integration/E2E); code review, architectural decisions, clean code, SOLID; Agile/Scrum'],
     ],
     labels: {
       summaryTitle: 'Summary',

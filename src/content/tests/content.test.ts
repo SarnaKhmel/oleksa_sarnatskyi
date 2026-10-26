@@ -56,6 +56,15 @@ describe('content', () => {
     expect(contacts.some((contact) => contact.kind === 'telegram')).toBe(Boolean(PROFILE.telegram.url));
   });
 
+  it('keeps the PDF skills and Voopty bullets in step across locales', () => {
+    expect(uk.cv.skills).toHaveLength(en.cv.skills.length);
+    expect(uk.cv.bullets).toHaveLength(en.cv.bullets.length);
+  });
+
+  it('lists every spoken language from the CV', () => {
+    expect(en.person.languages.map((language) => language.level)).toEqual(['native', 'B2', 'A2']);
+  });
+
   it('marks exactly one current full-time job', () => {
     expect(en.career.filter((stage) => stage.current && stage.kind === 'work')).toHaveLength(1);
   });
