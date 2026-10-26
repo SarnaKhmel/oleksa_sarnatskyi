@@ -39,5 +39,5 @@ export const STATS = {
   teamShare: 53,
   testCases: 2700,
   backgroundJobs: 27,
-  emailTemplates: 130,
+  messagesPerDay: 60000,
 } as const;

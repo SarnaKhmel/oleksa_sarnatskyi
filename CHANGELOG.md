@@ -4,6 +4,16 @@ All notable changes to this project. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] — 2026-10-14
+
+### Changed
+
+- Content synced with the updated CV: new summary and headline (React · Node.js · TypeScript),
+  Voopty bullets with real load numbers (~7.7M records, ~60k automated messages a day), sharper
+  descriptions of earlier roles, Polish (A2) added to languages.
+- PDF CV skills regrouped as in the CV (databases, AI, payments, infrastructure, testing).
+- The "email templates" stat is replaced with automated messages per day.
+
 ## [1.1.0] — 2026-09-25
 
 ### Changed
